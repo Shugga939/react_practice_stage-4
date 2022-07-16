@@ -1,0 +1,112 @@
+@import './../../styles/variables.scss';
+
+.card {
+  position: relative;
+  height: 426px;
+  width: 280px;
+  border-bottom: 1px solid #E6E6E6;
+  border-right: 1px solid #E6E6E6;
+  padding: 40px 20px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+
+  &--active {
+    height: 545px;
+    z-index: 10;
+    transform: translate(5px, 10px)
+  }
+
+  &__notice {
+    position: absolute;
+    top: 15px;
+    display: flex;
+  }
+
+  &__favorite {
+    position: absolute;
+    height: 13px;
+    top: 18px;
+    right: 20px;
+    display: flex;
+    cursor: pointer;
+
+    img {
+      margin-right: 5px;
+    }
+  }
+
+  &__photo-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+     
+    img {
+      width: 100%;
+      // max-height: 200px;
+      height: 200px;
+
+      object-fit: none;
+    }
+  }
+
+  &__gost {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+    letter-spacing: 0.009em;
+    width: max-content;
+    color: $red_color;
+    padding: 4px 10px;
+    border-radius: 2px;
+    background-color: hsla(4, 60%, 49%, 0.1);
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  &__name {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0.009em;
+    margin-top: 10px;
+  }
+
+  &__price-and-amount {
+    margin-top: 10px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__price {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.009em;
+  }
+
+  &__amount-container {
+
+  }
+
+  &__buttons {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__add-button {
+    
+  }
+
+  &__detail-button {
+    margin-top: 15px;
+    background-color: #EFEFEF;
+  }
+}
