@@ -1,0 +1,38 @@
+.products-page {
+  height: 100%;
+
+  &__title {
+    text-align: center;
+    margin: 30px 0;
+  }
+
+  &__form {
+
+  }
+}
+
+.products-form {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+
+  input {
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  button {
+    width: 200px;
+  }
+}
+
+.type-error {
+  color: red;
+  font-size: 15px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+
+}

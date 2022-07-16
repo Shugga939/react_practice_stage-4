@@ -1,25 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import MainPage from './pages/MainPage';
+import ProductsPage from './pages/ProductsPage';
+import ProductsTypePage from './pages/ProductsTypePage';
+import { routesPath } from './utils/RoutesPath';
 
-function App() {
+const App:FC =() => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path={routesPath.MAIN_PAGE} element={<MainPage/>}></Route>
+      <Route path={routesPath.PRODUCTS_PAGE} element = {<ProductsPage/>}> </Route>
+      <Route path={routesPath.PRODUCTS_TYPE_PAGE} element = {<ProductsTypePage/>}> </Route>
+      <Route path="*" element = {<Navigate replace to={routesPath.MAIN_PAGE}/>}> </Route>
+    </Routes>
   );
 }
 

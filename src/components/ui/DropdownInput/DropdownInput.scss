@@ -1,0 +1,53 @@
+@import './../../../styles/ui.scss';
+
+.dropdown-input {
+  position: relative;
+  width: 100%;
+
+  &::after {
+    position: absolute;
+    content: '';
+    background-image: url(./.././../../assets/img/ui/dropdown-arrow__close.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 20px;
+    width: 50px;
+    right: 0;
+    top: 22px;
+    cursor: pointer;
+  }
+
+  &__select {
+    width: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+  }
+
+  &__types-container {
+    margin-top: -2px;
+  }
+
+  &__type {
+    width: 100%;
+    padding: 14px 20px;
+    background-color: white;
+    border-left: 1px solid $inputs_border_color;
+    border-right: 1px solid $inputs_border_color;
+    border-bottom: 1px solid $inputs_border_color;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 0.009em;
+
+    &:hover {
+      background-color: $inputs_border_color;
+      cursor: pointer;
+    }
+
+    &:last-child {
+      border-radius: 0 0 4px 4px;
+    }
+  }
+}

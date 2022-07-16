@@ -1,0 +1,116 @@
+@import './variables.scss';
+
+.input {
+  position: relative;
+  padding: 12px 20px;
+  border-radius: 4px;
+  border: 1px solid $inputs_border_color;
+  border-width: 1px;
+  outline: none;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 0.009em;
+  
+  &::placeholder {
+    color: $grey_color;
+  }
+}
+
+.button {
+  position: relative;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0.009em;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+  
+  &--primary {
+    border: none;
+    background-color: $red_color;
+    color: white;
+  }
+
+  &--bordered {
+    border: 1px solid $red_color;
+    color: $red_color;
+    background: transparent;
+  }
+}
+
+.switch{
+  position: relative;
+  display: inline-block;
+  width: 43px;
+  height: 18px;
+
+  input {
+    display: none;
+
+    &:checked + .slider {
+      background-image: url('./../assets/img/ui/switch_sq--red.svg');
+      background-repeat: no-repeat;
+      background-position-y: center;
+      background-position-x: 5px;
+
+      &.slider:before {
+        content: '';
+        transform: translateX(21.5px);
+        background-image: url('./../assets/img/ui/switch_line.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 22px;
+        width: 22px;
+      }
+
+      &.slider::after {
+        content: '';
+        background-image: none;
+        transition: 0.5s; 
+      }
+    }
+  }
+  .slider {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border-radius: 34px;
+    border: none;
+    cursor: pointer;
+
+    &::after {
+      position: absolute;
+      content: "";
+      background-image: url('./../assets/img/ui/switch_line--red.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 22px;
+      width: 22px;
+      right: 0px;
+      bottom: -2.5px;
+    }
+
+    &:before{
+      position: absolute;
+      content: "";
+      background-image: url('./../assets/img/ui/switch_sq.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 22px;
+      width: 22px;
+      left: 0px;
+      bottom: -2.5px;
+      background-color: $red_color;
+      transition: 0.2s;
+      border-radius: 34px;
+    }
+  }
+}
