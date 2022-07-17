@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useRef, useState } from "react";
 import './Card.scss'
 import photo_1 from './../../assets/static/1.png'
 import star_icon from './../../assets/img/ui/star.svg'
@@ -16,6 +16,7 @@ interface CardProps {
 let Card: FC<CardProps> = ({name, photo, gost,price, hit, promotion}) => {
 
   const [hover, setHover] = useState(false)
+  let [amount, setAmount] = useState(0)
 
   const handleMouseOver = ()=> {
     setHover(true)
@@ -33,8 +34,8 @@ let Card: FC<CardProps> = ({name, photo, gost,price, hit, promotion}) => {
       onMouseLeave={handleMouseOut}
     >
       <div className="card__notice">
-        <span className="notice notice--pink"> Хит </span>
-        <span className="notice notice--green"> Акция </span>
+        {hit? <span className="notice notice--pink"> Хит </span> : ''}
+        {promotion? <span className="notice notice--green"> Акция </span> : ''}
       </div>
       {hover? 
         <span className="card__favorite">
@@ -55,12 +56,17 @@ let Card: FC<CardProps> = ({name, photo, gost,price, hit, promotion}) => {
           <div className="counter">
             <button 
               className="counter__minus"
-
+              onClick={(e)=> {if (amount>0 ) setAmount(--amount)}}
             > - </button>
-            <input type="number" className="counter__input" />
+            <input 
+              type="number" 
+              className="counter__input"
+              value={amount}
+              onChange={(e)=> setAmount(+e.target.value)}
+            />
             <button 
               className="counter__plus"
-              
+              onClick={(e)=> setAmount(++amount)}
             > + </button>
           </div>
         </div>

@@ -10,6 +10,13 @@
   font-size: 15px;
   font-weight: 300;
   letter-spacing: 0.009em;
+
+  -moz-appearance: textfield;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
   
   &::placeholder {
     color: $grey_color;
@@ -163,11 +170,11 @@
     border-right: 1px solid #E6E6E6;
     border-left: 1px solid #E6E6E6;
     outline: none;
-    -moz-appearance: textfield;
     text-align: center;
     font-size: 18px;
     font-weight: 400;
     line-height: 22px;
+    -moz-appearance: textfield;
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {

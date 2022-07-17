@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import './../pages/Pages.scss'
 import './../pages/styles/MainPage.scss'
 import sort_icon from './../assets/img/sortSection/categories.svg'
@@ -8,6 +8,7 @@ import Footer from "../components/footer/Footer";
 import Header from "../components/header/Header";
 import SortPanel from "../components/sortPanel/SortPanel";
 import Card from "../components/card/Card";
+import PriceFilter from "../components/priceFilter/PriceFilter";
 
 
 let mockCards = [
@@ -21,7 +22,7 @@ let mockCards = [
   },
   {
     photo : './../assets/img/sortSection/filter.svg',
-    name : 'Опора тавровая хомутовая ТХ',
+    name : 'Опора тавровая хомутовая ТХ2',
     gost: 'ГОСТ 14911-82',
     price: 849.9,
     hit : true,
@@ -29,15 +30,15 @@ let mockCards = [
   },
   {
     photo : './../assets/img/sortSection/filter.svg',
-    name : 'Опора тавровая хомутовая ТХ',
+    name : 'Опора тавровая хомутовая ТХ3',
     gost: 'ГОСТ 14911-82',
     price: 849.9,
     hit : true,
-    promotion : true
+    promotion : false
   },
   {
     photo : './../assets/img/sortSection/filter.svg',
-    name : 'Опора тавровая хомутовая ТХ',
+    name : 'Опора тавровая хомутовая ТХ4',
     gost: 'ГОСТ 14911-82',
     price: 849.9,
     hit : true,
@@ -45,8 +46,13 @@ let mockCards = [
   }
 ]
 
+let mockGosts = ['ГОСТ 14911-82' , 'ОСТ 36-146-88']
+
 
 let MainPage:FC = ()=> {
+
+  const [activeGost, setActiveGost] = useState('')
+
   return (
     <div className="main-page page">
       <Header/>
@@ -61,21 +67,31 @@ let MainPage:FC = ()=> {
               <div className="filter">
                 <div className="filter__header-categories filter--chapter">
                   <img src={sort_icon} alt="" />
-                  <span> Категории </span>
+                  <h3> Категории </h3>
                 </div>
                 {/* <div className="filter__categories">
                   Категорий нет
                 </div> */}
                 <div className="filter--chapter">
                   <img src={filter_icon} alt="" />
-                  <span> Фильтры </span>
+                  <h3> Фильтры </h3>
                 </div>
+                <PriceFilter/>
               </div>
             </div>
             <div className="products-section__list-column">
               <div className="products">
                 <div className="products__header-gosts">
-                  <div className="products__gost"> ГОСТ 14911-82 </div>
+                  {mockGosts.map(gost=> {
+                    return (
+                      <div 
+                        className="products__gost"
+                        key={gost}
+                        // onClick={(e)=> {e.target}}
+                      > {gost} </div>
+                    )
+                  })}
+                  
                 </div>
                 <div className="products__cards-list">
                   {mockCards.map(card=> {
