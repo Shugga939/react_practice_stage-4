@@ -1,0 +1,153 @@
+@import './../../styles/variables.scss';
+
+.basket-page {
+
+  &__title {
+    margin-bottom: 30px;
+  }
+}
+
+.basket {
+  width: 100%;
+  display: flex;
+  height: 100%;
+  border: 1px solid #E6E6E6;
+  background-color: white;
+
+  &__left-column {
+    min-width: 830px;
+  }
+
+  &__left-header {
+    height: 60px;
+    border-bottom: 1px solid #E6E6E6;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0.009em;
+    color: #B3B3B3;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+  }
+
+  &__header-message {
+    
+  }
+
+  &__products-list {
+
+  }
+
+  &__right-column {
+    width: 100%;
+    height: 100%;
+    border-left: 1px solid #E6E6E6;
+  }
+
+  &__right-header {
+    height: 60px;
+    border-bottom: 1px solid #E6E6E6;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+  }
+
+  &__form {
+
+  }
+
+}
+
+.order-form {
+  padding: 20px;
+  &__message {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.009em;
+    color: #B3B3B3;
+  }
+
+  &__input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #E6E6E6;
+    margin-top: 15px;
+    outline: none;
+    padding: 8px 0px 8px 25px;
+  }
+
+  &__total {
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: 1px;
+    text-align: left;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+
+  &__price {
+    color: $red_color;
+  }
+
+  &__submit {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+
+  &__link {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      content: url('./../../assets/img/ui/file.svg');
+      width: 26px;
+      height: 30px;
+      background: rgba(201, 61, 51, 0.1);
+      border-radius: 2px;
+      top: calc(50% - 15px);
+      left: 30px;
+    }
+
+    &::after {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      content: url('./../../assets/img/ui/download.svg');
+      width: 15px;
+      height: 15px;
+      background: white;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05);
+      border-radius: 100%;
+      top: calc(50% + 5px);
+      left: 48px;
+    }
+  }
+
+  &__pdf {
+    border: 1px solid $red_color;
+    border-radius: 4px;
+    padding: 13px 15px 13px 80px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 18px;
+    color:$red_color;
+
+  }
+}
