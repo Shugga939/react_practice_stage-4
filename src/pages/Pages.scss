@@ -22,12 +22,12 @@
   display: flex;
   justify-content: center;
   background-color: $grey_bg;
+  padding-bottom: 50px;
   
   &__container {
     height: 100%;
     width: 100%;
     max-width: 1110px;
-    margin-bottom: 150px;
   }
 }
 

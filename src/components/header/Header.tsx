@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import './Header.scss'
 import logo from './../../assets/img/header/logo.png'
 import phone_icon from './../../assets/img/header/phone.svg'
@@ -7,11 +7,13 @@ import mail_icon from './../../assets/img/header/mail.svg'
 import star_icon from './../../assets/img/header/star.svg'
 import basket_icon from './../../assets/img/header/basket.svg'
 import next_icon from './../../assets/img/header/next.svg'
-
 import { routesPath } from "../../utils/RoutesPath";
 
 
 let Header:FC = () => {
+
+  const [productCount, setProductCount] = useState(10)
+
   return (
     <header className='header'>
       <div className="header__up-row">
@@ -74,10 +76,14 @@ let Header:FC = () => {
               <img src={star_icon} alt=""/>
               <span> Избранное </span>
             </div>
-            <div className="ui-panel__basket">
+            <a className="ui-panel__basket" href={routesPath.BASKET_PAGE}>
               <img src={basket_icon} alt=""/>
-              <span> Корзина </span>
-            </div>
+              {productCount? 
+                <span className="ui-panel__basket-count"> {productCount} </span>
+                : ''
+              }
+              <span> Корзина </span> 
+            </a>
           </div>
         </div>
       </div>

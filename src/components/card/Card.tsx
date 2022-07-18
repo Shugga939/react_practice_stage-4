@@ -2,6 +2,7 @@ import { FC, useRef, useState } from "react";
 import './Card.scss'
 import photo_1 from './../../assets/static/1.png'
 import star_icon from './../../assets/img/ui/star.svg'
+import Counter from "../ui/counter/Counter";
 
 
 interface CardProps {
@@ -16,7 +17,7 @@ interface CardProps {
 let Card: FC<CardProps> = ({name, photo, gost,price, hit, promotion}) => {
 
   const [hover, setHover] = useState(false)
-  let [amount, setAmount] = useState(0)
+  let [amount, setAmount] = useState(1)
 
   const handleMouseOver = ()=> {
     setHover(true)
@@ -53,22 +54,7 @@ let Card: FC<CardProps> = ({name, photo, gost,price, hit, promotion}) => {
         <span className="card__price"> {`${price} руб.`} </span>
         {hover? 
         <div className="card__amount-container">
-          <div className="counter">
-            <button 
-              className="counter__minus"
-              onClick={(e)=> {if (amount>0 ) setAmount(--amount)}}
-            > - </button>
-            <input 
-              type="number" 
-              className="counter__input"
-              value={amount}
-              onChange={(e)=> setAmount(+e.target.value)}
-            />
-            <button 
-              className="counter__plus"
-              onClick={(e)=> setAmount(++amount)}
-            > + </button>
-          </div>
+          <Counter amount={amount} setAmount={setAmount}/>
         </div>
         : ''
         }
