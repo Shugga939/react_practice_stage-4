@@ -17,6 +17,12 @@
     cursor: pointer;
   }
 
+  &--open {
+    &::after {
+      background-image: url(./.././../../assets/img/ui/dropdown-arrow__open.svg);
+    }
+  }
+
   &__select {
     width: 100%;
 

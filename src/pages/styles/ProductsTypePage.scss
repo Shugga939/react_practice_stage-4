@@ -30,8 +30,21 @@
   }
 }
 
-.type-error {
+.empty-error {
+  margin-top: 10px;
   color: red;
-  font-size: 15px;
+  font-size: 14px;
   margin-bottom: 10px;
+}
+
+.busy-error {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.sucsess-message {
+  color: rgb(16, 167, 16);
+  font-size: 14px;
+  margin-top: 10px;
 }

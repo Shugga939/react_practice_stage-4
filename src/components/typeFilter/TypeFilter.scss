@@ -1,0 +1,41 @@
+@import './../../styles/variables.scss';
+
+.type-item {
+  width: 100%;
+  border-top: 1px solid #E6E6E6;;
+  padding: 20px 20px;
+  
+
+  &__checkbox {
+    position: relative;
+    user-select: none;
+
+    input {
+      display: none;
+    }
+  }
+
+  &__checkbox-background {
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    background: #FFFFFF;
+    border: 1px solid #E6E6E6;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  
+  input:checked + &__checkbox-background {
+    background: url('./../../assets/img/ui/Checkbox.svg') no-repeat;
+    background-position: center;
+  }
+  &__checkbox-background:hover{
+    border-color: $red_color;
+  }
+  &__name{
+    margin-left: 30px;
+    width: 50px;
+    word-break: break-all;
+  }
+
+}

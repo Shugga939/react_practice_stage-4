@@ -1,7 +1,6 @@
 import { FC } from "react";
 import Footer from "../components/footer/Footer";
 import Header from "../components/header/Header";
-import './../pages/styles/BasketPage.scss'
 
 import basket_icon from './../assets/img/ui/basket.svg'
 import alert_icon from './../assets/img/ui/alert.svg'

@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 import './../pages/Pages.scss'
-import './../pages/styles/MainPage.scss'
 import sort_icon from './../assets/img/sortSection/categories.svg'
 import filter_icon from './../assets/img/sortSection/filter.svg'
 
@@ -9,6 +8,9 @@ import Header from "../components/header/Header";
 import SortPanel from "../components/sortPanel/SortPanel";
 import Card from "../components/card/Card";
 import PriceFilter from "../components/priceFilter/PriceFilter";
+
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import TypeFilter from "../components/typeFilter/TypeFilter";
 
 
 let mockCards = [
@@ -51,8 +53,11 @@ let mockGosts = ['ГОСТ 14911-82' , 'ОСТ 36-146-88']
 
 let MainPage:FC = ()=> {
 
-  const [activeGost, setActiveGost] = useState('')
-
+  // const [activeGost, setActiveGost] = useState('')
+  // const {gosts} = useAppSelector(state=>state.productsReducer)
+  // const dispatch = useAppDispatch()
+  // console.log(gosts);
+  
   return (
     <div className="main-page page">
       <Header/>
@@ -67,7 +72,7 @@ let MainPage:FC = ()=> {
               <div className="filter">
                 <div className="filter__header-categories filter--chapter">
                   <img src={sort_icon} alt="" />
-                  <h3> Категории </h3>
+                  <h3 onClick={()=> {}}> Категории </h3>
                 </div>
                 {/* <div className="filter__categories">
                   Категорий нет
@@ -77,6 +82,7 @@ let MainPage:FC = ()=> {
                   <h3> Фильтры </h3>
                 </div>
                 <PriceFilter/>
+                <TypeFilter/>
               </div>
             </div>
             <div className="products-section__list-column">

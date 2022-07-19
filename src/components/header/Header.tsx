@@ -8,6 +8,7 @@ import star_icon from './../../assets/img/header/star.svg'
 import basket_icon from './../../assets/img/header/basket.svg'
 import next_icon from './../../assets/img/header/next.svg'
 import { routesPath } from "../../utils/RoutesPath";
+import { Link } from "react-router-dom";
 
 
 let Header:FC = () => {
@@ -22,13 +23,13 @@ let Header:FC = () => {
             <nav className='navigation'>
               <ul className="navigation__list">
                 <li className="navigation__item">
-                  <a href={routesPath.PRODUCTS_TYPE_PAGE}> Типы продуктов</a>
+                  <Link to={routesPath.PRODUCTS_TYPE_PAGE}>Типы продуктов</Link>
                 </li>
                 <li className="navigation__item">
-                  <a href={routesPath.PRODUCTS_PAGE}> Продукты</a>
+                  <Link to={routesPath.PRODUCTS_PAGE}>Продукты</Link>
                 </li>
                 <li className="navigation__item">
-                  <a href={routesPath.MAIN_PAGE}> Товары</a>
+                  <Link to={routesPath.MAIN_PAGE}>Товары</Link>
                 </li>
               </ul>
             </nav>
@@ -55,9 +56,9 @@ let Header:FC = () => {
         <div className="header__down-body">
           <div className="ui-panel">
             <div className="ui-panel__logo">
-              <a href={routesPath.MAIN_PAGE}>
+              <Link to={routesPath.MAIN_PAGE}>
                 <img src={logo} alt=""/>
-              </a>
+              </Link>
               <p>Производитель металлических изделий №1</p>
             </div>
             <button className="ui-panel__catalog-button"> Каталог </button>
@@ -76,22 +77,22 @@ let Header:FC = () => {
               <img src={star_icon} alt=""/>
               <span> Избранное </span>
             </div>
-            <a className="ui-panel__basket" href={routesPath.BASKET_PAGE}>
-              <img src={basket_icon} alt=""/>
+            <Link to={routesPath.BASKET_PAGE} className="ui-panel__basket">
+            <img src={basket_icon} alt=""/>
               {productCount? 
                 <span className="ui-panel__basket-count"> {productCount} </span>
                 : ''
               }
               <span> Корзина </span> 
-            </a>
+            </Link>
           </div>
         </div>
       </div>
       <div className="header__current-page">
         <div className="header__current-page__wrapper">
-          <a href={routesPath.MAIN_PAGE}> Главная </a>
+          <Link to={routesPath.MAIN_PAGE}>Главная</Link>
           <img src={next_icon} alt="" />
-          <a href={routesPath.MAIN_PAGE}> Интернет-магазин  </a>
+          <Link to={routesPath.MAIN_PAGE}>Интернет-магазин </Link>
           <img src={next_icon} alt="" />
           <span> Опоры трубопроводов </span>
         </div>
