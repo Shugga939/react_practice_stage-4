@@ -5,15 +5,15 @@ import { IProductType } from "../../../models/IProductType";
 export interface SortState {
   types: IProductType[],
   gosts: string[],
-  currentType: IProductType[],
-  currentGost: string[],
+  currentTypes: IProductType[],
+  currentGosts: string[],
 }
 
 const initialState: SortState = {
-  types: [],
-  gosts: [],
-  currentType: [],
-  currentGost: []
+  types: [{id :1, type: "Опора"}],
+  gosts: ['ГОСТ 14911-82'],
+  currentTypes: [],
+  currentGosts: []
 }
 
 export const sortSlice = createSlice({
@@ -22,7 +22,20 @@ export const sortSlice = createSlice({
   reducers: {
     addType(state, action: PayloadAction<IProductType>) {
       state.types.push(action.payload)
-    } 
+    },
+
+    addGost(state, action: PayloadAction<string>) {
+      state.gosts.push(action.payload)
+    },
+
+    toggleGost (state, action: PayloadAction<string>) {
+      if (state.currentGosts.includes(action.payload)) {
+        const desiredPosition = state.currentGosts.indexOf(action.payload)
+        state.currentGosts.splice(desiredPosition, 1)
+      } else {
+        state.currentGosts.push(action.payload)
+      }
+    },
   }
 })
 

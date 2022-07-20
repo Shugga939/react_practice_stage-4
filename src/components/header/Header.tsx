@@ -9,11 +9,13 @@ import basket_icon from './../../assets/img/header/basket.svg'
 import next_icon from './../../assets/img/header/next.svg'
 import { routesPath } from "../../utils/RoutesPath";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../../hooks/redux";
 
 
 let Header:FC = () => {
 
-  const [productCount, setProductCount] = useState(10)
+  // const [productCount, setProductCount] = useState(10)
+  const {basket} = useAppSelector(state=>state.productsReducer)
 
   return (
     <header className='header'>
@@ -79,8 +81,8 @@ let Header:FC = () => {
             </div>
             <Link to={routesPath.BASKET_PAGE} className="ui-panel__basket">
             <img src={basket_icon} alt=""/>
-              {productCount? 
-                <span className="ui-panel__basket-count"> {productCount} </span>
+              {basket.length? 
+                <span className="ui-panel__basket-count"> {basket.length} </span>
                 : ''
               }
               <span> Корзина </span> 

@@ -4,15 +4,14 @@ import Header from "../components/header/Header";
 import DropdownInput from "../components/ui/DropdownInput/DropdownInput";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { IProductType } from "../models/IProductType";
-
+import { productsSlice } from "../store/reducers/products";
+import def_photo from '../assets/static/1.png'
+import { sortSlice } from "../store/reducers/sort";
 
 
 
 let ProductsPage:FC = () => {
 
-  const {types} = useAppSelector(state=>state.sortReducer)
-  const {products} = useAppSelector(state=>state.productsReducer)
-  
   const [emptyValue, setEmptyValue] = useState (false)
   const [busyValue, setBusyValue] = useState (false)
   const [sucsess, setSucsess] = useState (false)
@@ -22,17 +21,21 @@ let ProductsPage:FC = () => {
   const nameRef = useRef <HTMLInputElement> (null)
   const priceRef = useRef <HTMLInputElement> (null)
   const gostRef = useRef <HTMLInputElement> (null)
+  const photoRef = useRef <HTMLInputElement> (null)
 
-
+  const {types} = useAppSelector(state=>state.sortReducer)
+  const {products} = useAppSelector(state=>state.productsReducer)
   const dispatch = useAppDispatch()
+  const {addProduct} = productsSlice.actions
+  const {addGost} = sortSlice.actions
 
-  const addProduct = (e:React.MouseEvent<HTMLButtonElement>)=> { 
+  
+  const addProductHandler = (e:React.MouseEvent<HTMLButtonElement>)=> { 
     e.preventDefault()
     const id = Number(idRef.current!.value)
-    const name = Number(nameRef.current!.value)
+    const name = nameRef.current!.value
     const price = Number(priceRef.current!.value)
-    const gost = Number(gostRef.current!.value)
-
+    const gost = gostRef.current!.value
 
     if (!id || !name || !price || !gost) {
       setEmptyValue(true)
@@ -47,7 +50,6 @@ let ProductsPage:FC = () => {
       return
     }
 
-
     setEmptyValue(false)
     setBusyValue(false)
     setSucsess(true)
@@ -57,11 +59,30 @@ let ProductsPage:FC = () => {
     gostRef.current!.value =''
     setSelectedType({id :0 , type: ''})
     setEmptyType(false)
+
+    const hit = name.includes('о')? true : false
+    const promotion = name.includes('а')? true : false
+
+    const photo =  
+      photoRef.current!.files![0]?
+        URL.createObjectURL(new Blob([photoRef.current!.files![0]],{type:'image/png'}))
+      : ''
+    
+    dispatch(addGost(gost))
+    dispatch(addProduct({
+      id,
+      name,
+      price,
+      gost,
+      type: selectedType,
+      hit,
+      promotion,
+      photo : photo
+    }))
   }
 
   const dropDownCallback = (type:IProductType) => {
     setSelectedType({...type})
-    console.log(selectedType);
   }
 
   return (
@@ -99,10 +120,17 @@ let ProductsPage:FC = () => {
                 className="input"
                 ref={gostRef}
               />
+              <span className='products-form__file'> Фото товара</span>
+              <input 
+                type="file"
+                className="input"
+                // onChange={(e)=> photoRef.current!.files = e.currentTarget.files}
+                ref={photoRef}
+              />
               <button 
                 type="submit"
                 className="button button--primary"
-                onClick={addProduct}
+                onClick={addProductHandler}
               > Добавить </button>
               {emptyValue? <span className="empty-error">Все поля должны быть заполнены</span> :''}
               {sucsess? <span className="sucsess-message">Тип продукта успешно дабавлен</span> :''}

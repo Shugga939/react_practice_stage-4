@@ -20,6 +20,7 @@ let ProductsTypePage:FC = () => {
   const dispatch = useAppDispatch()
   const {addType} = sortSlice.actions
 
+  
   const addProductType = (e:React.MouseEvent<HTMLButtonElement>)=> { 
     e.preventDefault()
     const id = Number(idRef.current!.value)

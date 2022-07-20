@@ -24,7 +24,7 @@ let Footer:FC = () => {
               />
               <button 
                 className="feedback__button button button--primary"
-                type="submit"
+                type="button"
               > Заказать звонок
               </button>
             </div>

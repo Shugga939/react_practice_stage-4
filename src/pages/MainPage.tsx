@@ -11,52 +11,22 @@ import PriceFilter from "../components/priceFilter/PriceFilter";
 
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import TypeFilter from "../components/typeFilter/TypeFilter";
-
-
-let mockCards = [
-  {
-    photo : './../assets/img/sortSection/filter.svg',
-    name : 'Опора тавровая хомутовая ТХ',
-    gost: 'ГОСТ 14911-82',
-    price: 849.9,
-    hit : true,
-    promotion : true
-  },
-  {
-    photo : './../assets/img/sortSection/filter.svg',
-    name : 'Опора тавровая хомутовая ТХ2',
-    gost: 'ГОСТ 14911-82',
-    price: 849.9,
-    hit : true,
-    promotion : true
-  },
-  {
-    photo : './../assets/img/sortSection/filter.svg',
-    name : 'Опора тавровая хомутовая ТХ3',
-    gost: 'ГОСТ 14911-82',
-    price: 849.9,
-    hit : true,
-    promotion : false
-  },
-  {
-    photo : './../assets/img/sortSection/filter.svg',
-    name : 'Опора тавровая хомутовая ТХ4',
-    gost: 'ГОСТ 14911-82',
-    price: 849.9,
-    hit : true,
-    promotion : true
-  }
-]
-
-let mockGosts = ['ГОСТ 14911-82' , 'ОСТ 36-146-88']
+import { sortSlice } from "../store/reducers/sort";
 
 
 let MainPage:FC = ()=> {
 
   // const [activeGost, setActiveGost] = useState('')
-  // const {gosts} = useAppSelector(state=>state.productsReducer)
-  // const dispatch = useAppDispatch()
-  // console.log(gosts);
+  const {products} = useAppSelector(state=>state.productsReducer)
+  const {gosts,currentGosts} = useAppSelector(state=>state.sortReducer)
+  // const {activeGost, deactivateGost} = sortSlice.actions
+  const {toggleGost} = sortSlice.actions
+
+  const dispatch = useAppDispatch()
+
+  const chooseGost = (gost:string)=> {
+    dispatch(toggleGost(gost))
+  }
   
   return (
     <div className="main-page page">
@@ -88,19 +58,19 @@ let MainPage:FC = ()=> {
             <div className="products-section__list-column">
               <div className="products">
                 <div className="products__header-gosts">
-                  {mockGosts.map(gost=> {
+                  {gosts.map(gost=> {
                     return (
                       <div 
-                        className="products__gost"
+                        className={currentGosts.includes(gost)? "products__gost products__gost--active" : "products__gost"}
                         key={gost}
-                        // onClick={(e)=> {e.target}}
+                        onClick={()=>chooseGost(gost)}
                       > {gost} </div>
                     )
                   })}
                   
                 </div>
                 <div className="products__cards-list">
-                  {mockCards.map(card=> {
+                  {products.map(card=> {
                     return <Card {...card} key={card.name}/>
                   })}
                 </div>

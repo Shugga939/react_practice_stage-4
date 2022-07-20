@@ -144,11 +144,11 @@
     background-color: #F9F9F9;
     margin-right: 5px;
     cursor: pointer;
+    user-select: none;
 
     &--active {
       color: white;
       background-color: $red_color;
-      cursor: default;
     }
   }
 
