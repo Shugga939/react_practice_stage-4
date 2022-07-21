@@ -4,19 +4,19 @@
 @import './styles/MainPage.scss';
 @import './styles/BasketPage.scss';
 
-
 .page {
   height: max-content;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   min-width: 1150px;
-  // min-height: 500px;
 }
 
 .main {
   height: 100%;
+  flex: 1 1 100%;
   width: 100%;
   max-width: 1440px;
   display: flex;
