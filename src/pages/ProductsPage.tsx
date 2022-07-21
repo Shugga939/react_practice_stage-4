@@ -5,10 +5,7 @@ import DropdownInput from "../components/ui/DropdownInput/DropdownInput";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { IProductType } from "../models/IProductType";
 import { productsSlice } from "../store/reducers/products";
-import def_photo from '../assets/static/1.png'
 import { sortSlice } from "../store/reducers/sort";
-
-
 
 let ProductsPage:FC = () => {
 
@@ -22,7 +19,6 @@ let ProductsPage:FC = () => {
   const priceRef = useRef <HTMLInputElement> (null)
   const gostRef = useRef <HTMLInputElement> (null)
   const photoRef = useRef <HTMLInputElement> (null)
-
   const {types} = useAppSelector(state=>state.sortReducer)
   const {products} = useAppSelector(state=>state.productsReducer)
   const dispatch = useAppDispatch()
@@ -60,13 +56,22 @@ let ProductsPage:FC = () => {
     setSelectedType({id :0 , type: ''})
     setEmptyType(false)
 
-    const hit = name.includes('о')? true : false
-    const promotion = name.includes('а')? true : false
+    const hit = name.toLowerCase().includes('о')? true : false
+    console.log(hit);
+    
+    const promotion = name.toLowerCase().includes('а')? true : false
+    console.log(promotion);
 
-    const photo =  
-      photoRef.current!.files![0]?
-        URL.createObjectURL(new Blob([photoRef.current!.files![0]],{type:'image/png'}))
-      : ''
+    let photo = ''
+
+    if (photoRef.current!.files![0]) {
+      if (photoRef.current!.files![0].type == 'image/png' ) {
+        photo = URL.createObjectURL(new Blob([photoRef.current!.files![0]],{type:'image/png'}))
+      } else if (photoRef.current!.files![0].type == 'image/jpeg') {
+        photo = URL.createObjectURL(new Blob([photoRef.current!.files![0]],{type:'image/jpeg'}))
+      }
+    }
+    photoRef.current!.value = ''
     
     dispatch(addGost(gost))
     dispatch(addProduct({
@@ -124,7 +129,6 @@ let ProductsPage:FC = () => {
               <input 
                 type="file"
                 className="input"
-                // onChange={(e)=> photoRef.current!.files = e.currentTarget.files}
                 ref={photoRef}
               />
               <button 
@@ -133,7 +137,7 @@ let ProductsPage:FC = () => {
                 onClick={addProductHandler}
               > Добавить </button>
               {emptyValue? <span className="empty-error">Все поля должны быть заполнены</span> :''}
-              {sucsess? <span className="sucsess-message">Тип продукта успешно дабавлен</span> :''}
+              {sucsess? <span className="sucsess-message">Товар успешно дабавлен</span> :''}
             </div>
           </form>
         </div>

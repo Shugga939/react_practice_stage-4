@@ -7,13 +7,15 @@ export interface SortState {
   gosts: string[],
   currentTypes: IProductType[],
   currentGosts: string[],
+  currentPrice: [number, number],
 }
 
 const initialState: SortState = {
-  types: [{id :1, type: "Опора"}],
-  gosts: ['ГОСТ 14911-82'],
+  types: [],
+  gosts: [],
   currentTypes: [],
-  currentGosts: []
+  currentGosts: [],
+  currentPrice: [0, 0],
 }
 
 export const sortSlice = createSlice({
@@ -24,8 +26,25 @@ export const sortSlice = createSlice({
       state.types.push(action.payload)
     },
 
+    toggleType (state, action: PayloadAction<IProductType>) {
+      const foundType = state.currentTypes.find((type=> type.id === action.payload.id))
+      
+      if (state.currentTypes.length && foundType) {
+        const desiredPosition = state.currentTypes.indexOf(action.payload)
+        state.currentTypes.splice(desiredPosition, 1)
+      } else {
+        state.currentTypes.push(action.payload)
+      }
+    },
+
+    clearCurrentTypes(state) {
+      state.currentTypes =[]
+    },
+
     addGost(state, action: PayloadAction<string>) {
-      state.gosts.push(action.payload)
+      if (!state.gosts.includes(action.payload)) {
+        state.gosts.push(action.payload)
+      }
     },
 
     toggleGost (state, action: PayloadAction<string>) {
@@ -35,6 +54,11 @@ export const sortSlice = createSlice({
       } else {
         state.currentGosts.push(action.payload)
       }
+    },
+
+    changePrice (state, action: PayloadAction<[number, number]>) {
+      state.currentPrice[0] = action.payload[0]
+      state.currentPrice[1] = action.payload[1]
     },
   }
 })

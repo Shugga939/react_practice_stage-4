@@ -1,7 +1,6 @@
 import { FC, useEffect, useRef, useState } from "react";
 import Footer from "../components/footer/Footer";
 import Header from "../components/header/Header";
-
 import basket_icon from './../assets/img/ui/basket.svg'
 import alert_icon from './../assets/img/ui/alert.svg'
 import BasketCard from "../components/basketCard/BasketCard";
@@ -9,7 +8,6 @@ import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import List from "../components/list/List";
 import { IBasketItem } from "../models/IBasket";
 import { emailValidation, phoneValidation } from "../utils/valiadtion";
-import { sortSlice } from "../store/reducers/sort";
 import { productsSlice } from "../store/reducers/products";
 
 
@@ -38,7 +36,6 @@ let BasketPage:FC = () => {
   const dispatch = useAppDispatch()
   const {basket} = useAppSelector(state=>state.productsReducer)
   const {clearBasket} = productsSlice.actions
-  
 
 
   useEffect(()=> {
@@ -144,13 +141,12 @@ let BasketPage:FC = () => {
                     </div>
                     <p className="order-form__total">
                       Итого
-                      <span className="order-form__price"> {`${finalPrice} руб`}. </span>
+                      <span className="order-form__price"> {`${finalPrice.toFixed(2)} руб`}. </span>
                     </p>
                     <div className="order-form__messages">
                       {emptyValue? <span className="order-form__error"> Все поля должны быть заполнены </span> : ''}
                       {emptyBasket? <span className="order-form__error"> Корзина не должна быть пустой </span> : ''}
                       {sucsess? <span className="order-form__sucsess"> Заказ успешно принят! </span> : ''}
-
                     </div>
                     <button 
                       className="order-form__submit button button--primary"

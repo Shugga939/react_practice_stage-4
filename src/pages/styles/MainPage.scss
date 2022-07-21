@@ -29,6 +29,7 @@
 
   &__list-column {
     width: 100%;
+    height: max-content;
   }
 
 }
@@ -122,6 +123,12 @@
   &__types {
     width: calc(100% + 40px);
   }
+
+  &__message {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
 }
 
 .products {
@@ -153,11 +160,19 @@
   }
 
   &__cards-list {
+    height: max-content;
     display: flex;
     flex-wrap: wrap;
 
     .card:nth-child(3) {
       border-right: none;
     }
+  }
+
+  &__message {
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 50px;
   }
 }

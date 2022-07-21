@@ -14,7 +14,6 @@ import { useAppSelector } from "../../hooks/redux";
 
 let Header:FC = () => {
 
-  // const [productCount, setProductCount] = useState(10)
   const {basket} = useAppSelector(state=>state.productsReducer)
 
   return (

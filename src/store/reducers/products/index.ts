@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IBasketItem } from "../../../models/IBasket";
 import { IProduct } from "../../../models/IProduct";
-import img from './../../../assets/static/1.png'
 
 
 export interface ProductsState {
@@ -10,16 +9,7 @@ export interface ProductsState {
 }
 
 const initialState: ProductsState = {
-  products: [{
-    id: 1,
-    photo : img,
-    name : 'Опора тавровая хомутовая ТХ',
-    type: {id :1, type: "Опора"},
-    gost: 'ГОСТ 14911-82',
-    price: 849.9,
-    hit : true,
-    promotion : true
-  }],
+  products: [],
   basket: []
 }
 

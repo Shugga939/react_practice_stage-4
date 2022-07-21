@@ -2,19 +2,24 @@ import { FC, useEffect, useRef, useState } from "react";
 import './PriceFilter.scss'
 import './RangeSlider'
 import './Range-slider.css'
+import { useAppDispatch } from "../../hooks/redux";
+import { sortSlice } from "../../store/reducers/sort";
+import { startPriceValue } from "../../utils/consts";
 declare const window: any;
 
-let PriceFilter: FC = ({}) => {
+let PriceFilter: FC = () => {
 
   const [show, setShow] = useState(false)
-  const sliderRef = useRef(null)
+  const sliderRef = useRef<HTMLDivElement>(null)
   const [from, setFrom]= useState(0)
   const [to, setTo]= useState(0)
-  const cooldown = useRef({cd: false, lv_from: 0, lv_to: 10000})
+  const cooldown = useRef({cd: false, lv_from: 0, lv_to: 0})
+  const dispatch = useAppDispatch()
+  const {changePrice} = sortSlice.actions
 
   useEffect(()=> {
-
-    if (sliderRef.current) {
+    
+    if (!sliderRef.current?.childNodes[0]) {
       new window.Slider({
         min_value : 1,
         max_value : 10000,
@@ -74,9 +79,11 @@ let PriceFilter: FC = ({}) => {
         }
       })
     }
-    
-  },[show])
+  },[])
   
+  const showFilter = ()=> {
+    setShow(!show)
+  }
 
   useEffect(()=> {
     cooldown.current.lv_from = from
@@ -86,8 +93,9 @@ let PriceFilter: FC = ({}) => {
       cooldown.current.cd =true
 
       setTimeout(()=>{
-        if (cooldown.current.lv_from == 0 || cooldown.current.lv_to == 0) return
-        console.log(cooldown.current);
+        if (cooldown.current.lv_from == 0) cooldown.current.lv_from = startPriceValue.from
+        if (cooldown.current.lv_to == 0) cooldown.current.lv_to = startPriceValue.to
+        dispatch(changePrice([cooldown.current.lv_from, cooldown.current.lv_to]))
         cooldown.current.cd =false
       },800)
 
@@ -99,17 +107,15 @@ let PriceFilter: FC = ({}) => {
   },[from, to, cooldown.current.cd])
 
 
-
-  
   return (
     <div className='filter__item'>
       <h3
         className={show? 'filter__header' : 'filter__header filter__header--hide'}
-        onClick={(e)=> setShow(!show)}
+        onClick={showFilter}
       > Цена, руб.
       </h3>
-      {show? 
-        <div className="priceSlider">
+      
+        <div className={show? "priceSlider" : "priceSlider hide"}>
           <div className="priceSlider__inputs">
             <input 
               type="number" 
@@ -124,11 +130,8 @@ let PriceFilter: FC = ({}) => {
               value={to}
             />
           </div>
-          <div className="priceSlider__slider" ref={sliderRef}>
-
-          </div>
+          <div className="priceSlider__slider" ref={sliderRef}/>
         </div>
-      : ''}
     </div>
   )
 }
