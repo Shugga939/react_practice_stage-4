@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/react_practice_stage-4/static/css/main.f09caa93.css",
+    "main.css": "/react_practice_stage-4/static/css/main.eabcb9b8.css",
     "main.js": "/react_practice_stage-4/static/js/main.6c82ac45.js",
     "static/media/1.png": "/react_practice_stage-4/static/media/1.6c6a7256d41186928fa6.png",
     "static/media/filter.svg": "/react_practice_stage-4/static/media/filter.3fc81ee09c0abf4f42a963cb388b0d1f.svg",
@@ -31,11 +31,11 @@
     "static/media/dropdown-arrow__open.svg": "/react_practice_stage-4/static/media/dropdown-arrow__open.8e3a3f74c0f5c0379510.svg",
     "static/media/next.svg": "/react_practice_stage-4/static/media/next.e22162696ae1ca7f41c671f3854f7c5b.svg",
     "static/media/Checkbox.svg": "/react_practice_stage-4/static/media/Checkbox.15a0482234e5a50d8b9d.svg",
-    "main.f09caa93.css.map": "/react_practice_stage-4/static/css/main.f09caa93.css.map",
+    "main.eabcb9b8.css.map": "/react_practice_stage-4/static/css/main.eabcb9b8.css.map",
     "main.6c82ac45.js.map": "/react_practice_stage-4/static/js/main.6c82ac45.js.map"
   },
   "entrypoints": [
-    "static/css/main.f09caa93.css",
+    "static/css/main.eabcb9b8.css",
     "static/js/main.6c82ac45.js"
   ]
 }
