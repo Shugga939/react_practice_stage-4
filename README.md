@@ -1,11 +1,10 @@
 # Practice task "Bastion group SPA"
 
 ## Deploy in [GH Pages](https://shugga939.github.io/react_practice_stage-4/)
----
+
 #### Для реализации использовались:
  - React + Typescript
  - Redux Toolkit
----
 
 ### Задание со стажировки:
 *Все элементы нефункциональны, кроме тех, которые описаны в задании.
